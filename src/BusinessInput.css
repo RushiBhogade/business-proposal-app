@@ -1,11 +1,18 @@
 .business-input {
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-h2,
-h3 {
+h2 {
     text-align: center;
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .business-input-form input,
@@ -13,106 +20,64 @@ h3 {
     display: block;
     width: 100%;
     margin: 10px 0;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
-.quotation-output,
-.proposal-section {
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    margin: 20px 0;
+.business-input-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
     border-radius: 8px;
 }
 
-.quotation-output h2 {
-    color: #333;
-}
-
-.quotation-description pre {
-    font-family: monospace;
-    background-color: #f4f4f4;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.quotation-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.quotation-header p,
-.quotation-date p {
-    margin: 0;
-}
-
-.quotation-output table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.quotation-output table th,
-.quotation-output table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
-
-.quotation-output table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-.print-button,
-.proposal-actions button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.print-button:hover,
-.proposal-actions button:hover {
+.business-input-form button:hover {
     background-color: #45a049;
 }
-.quotation-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 1rem;
-    text-align: left;
-}
 
-.quotation-table th,
-.quotation-table td {
+.proposal-output,
+.quotation-output {
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
 }
 
-.quotation-table th {
-    background-color: #f2f2f2;
-    text-align: center;
+.proposal-output h2,
+.quotation-output h2 {
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.quotation-table tfoot td {
-    font-weight: bold;
+pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
 }
 
+.accept-button,
 .print-button {
-    margin-top: 20px;
-    padding: 10px 15px;
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 
+.accept-button:hover,
 .print-button:hover {
     background-color: #45a049;
 }

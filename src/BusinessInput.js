@@ -16,14 +16,20 @@ const BusinessInput = () => {
     challenges: "",
     targetMarket: "",
   });
+  const [proposalContent, setProposalContent] = useState(null);
   const [quotationContent, setQuotationContent] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showProposal, setShowProposal] = useState(false);
   const [showQuotation, setShowQuotation] = useState(false);
+  const [isProposalAccepted, setIsProposalAccepted] = useState(false);
 
+  // Reference for the quotation div to print
   const quotationRef = useRef();
 
+  // Ensure the ref points to the content you want to print
   const handlePrint = useReactToPrint({
-    content: () => quotationRef.current,
+    content: () => quotationRef.current, // Reference for the content you want to print
+    documentTitle: "Quotation", // Set a title for the printed document
   });
 
   const handleInputChange = (e) => {
@@ -32,7 +38,7 @@ const BusinessInput = () => {
   };
 
   const generateContent = async (prompt) => {
-    const apiKey = "AIzaSyAyyQgmX7YpkIi_HNDxc4yyCMvorFYm0Hk";
+    const apiKey = "AIzaSyAyyQgmX7YpkIi_HNDxc4yyCMvorFYm0Hk"; // Update with your own API key
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
       {
@@ -57,11 +63,37 @@ const BusinessInput = () => {
     setIsLoading(true);
 
     try {
-      const quotationPrompt = `Generate a quotation table for ${businessDetails.companyName} in the ${businessDetails.industry} industry. Their goals are ${businessDetails.goals}. They face challenges such as ${businessDetails.challenges}. Their target market is ${businessDetails.targetMarket}. Please provide the quotation in a markdown table format with the following columns: Item Description, Quantity, Unit Price, Total Price.`;
+      const proposalPrompt = `Generate a business proposal for ${businessDetails.companyName} in the ${businessDetails.industry} industry. Their goals are ${businessDetails.goals}. They face challenges such as ${businessDetails.challenges}. Their target market is ${businessDetails.targetMarket}. Provide the proposal in a professional tone.`;
+      const generatedProposal = await generateContent(proposalPrompt);
+      setProposalContent(generatedProposal);
+
+      // Store the proposal in Firebase
+      await addDoc(collection(db, "businessProposals"), {
+        businessDetails,
+        proposal: generatedProposal,
+        timestamp: new Date(),
+      });
+
+      setShowProposal(true);
+    } catch (error) {
+      console.error("Error occurred:", error);
+      alert(
+        "An error occurred while generating the proposal. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleAcceptProposal = async () => {
+    setIsLoading(true);
+    setIsProposalAccepted(true);
+    try {
+      const quotationPrompt = `Generate a quotation table for ${businessDetails.companyName} in the ${businessDetails.industry} industry. Their goals are ${businessDetails.goals}. They face challenges such as ${businessDetails.challenges}. Their target market is ${businessDetails.targetMarket}. Please provide the quotation in a markdown table format with proper points, total price breakdown, and all.`;
       const generatedQuotation = await generateContent(quotationPrompt);
       setQuotationContent(generatedQuotation);
 
-      // Save to Firebase
+      // Store the quotation in Firebase
       await addDoc(collection(db, "businessQuotations"), {
         businessDetails,
         quotation: generatedQuotation,
@@ -71,7 +103,9 @@ const BusinessInput = () => {
       setShowQuotation(true);
     } catch (error) {
       console.error("Error occurred:", error);
-      alert("An error occurred. Please try again.");
+      alert(
+        "An error occurred while generating the quotation. Please try again."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -145,50 +179,27 @@ const BusinessInput = () => {
           required
         />
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Generating..." : "Generate Quotation"}
+          {isLoading ? "Generating..." : "Generate Proposal"}
         </button>
       </form>
 
-      {showQuotation && (
+      {showProposal && (
+        <div className="proposal-output">
+          <h2>Business Proposal</h2>
+          <pre>{proposalContent}</pre>
+
+          {!isProposalAccepted && (
+            <button onClick={handleAcceptProposal} className="accept-button">
+              Accept Proposal
+            </button>
+          )}
+        </div>
+      )}
+
+      {showQuotation && isProposalAccepted && (
         <div ref={quotationRef} className="quotation-output">
           <h2>Quotation</h2>
-          <table className="quotation-table">
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Total Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Service 1</td>
-                <td>10 Hours</td>
-                <td>$100</td>
-                <td>$1000</td>
-              </tr>
-              <tr>
-                <td>Service 2</td>
-                <td>5 Hours</td>
-                <td>$150</td>
-                <td>$750</td>
-              </tr>
-              <tr>
-                <td>Service 3</td>
-                <td>3 Hours</td>
-                <td>$200</td>
-                <td>$600</td>
-              </tr>
-              {/* Add more rows dynamically from generated data */}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colSpan="3">Total</td>
-                <td>$2350</td>
-              </tr>
-            </tfoot>
-          </table>
+          <pre>{quotationContent}</pre>
 
           <button onClick={handlePrint} className="print-button">
             Download Quotation as PDF
