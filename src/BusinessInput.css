@@ -1,0 +1,118 @@
+.business-input {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2,
+h3 {
+    text-align: center;
+}
+
+.business-input-form input,
+.business-input-form textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.quotation-output,
+.proposal-section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.quotation-output h2 {
+    color: #333;
+}
+
+.quotation-description pre {
+    font-family: monospace;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.quotation-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.quotation-header p,
+.quotation-date p {
+    margin: 0;
+}
+
+.quotation-output table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.quotation-output table th,
+.quotation-output table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.quotation-output table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.print-button,
+.proposal-actions button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.print-button:hover,
+.proposal-actions button:hover {
+    background-color: #45a049;
+}
+.quotation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.quotation-table th,
+.quotation-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.quotation-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.quotation-table tfoot td {
+    font-weight: bold;
+}
+
+.print-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.print-button:hover {
+    background-color: #45a049;
+}

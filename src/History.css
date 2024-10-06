@@ -1,0 +1,50 @@
+.history {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.proposal-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.proposal-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.proposal-item h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.proposal-item p {
+    margin: 10px 0;
+}
+
+.proposal-item details {
+    margin-top: 15px;
+}
+
+.proposal-item summary {
+    cursor: pointer;
+    color: #0066cc;
+}
+
+.proposal-item pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #666;
+    text-align: right;
+}

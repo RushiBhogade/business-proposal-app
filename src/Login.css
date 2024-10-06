@@ -1,0 +1,83 @@
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    /* Blue border on focus */
+    outline: none;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button {
+    background-color: #007bff;
+    /* Blue button */
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+.google-login-button {
+    background-color: #db4437;
+    /* Google red */
+    margin-top: 10px;
+}
+
+.google-login-button:hover {
+    background-color: #c13524;
+    /* Darker red on hover */
+}
+.signup-prompt {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+}
+
+.signup-link {
+    color: #007bff;
+    /* Blue color for the sign-up link */
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signup-link:hover {
+    color: #0056b3;
+    /* Darker blue on hover */
+}
